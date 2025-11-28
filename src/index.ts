@@ -1,12 +1,9 @@
 import { REST } from "@zhyporium/rest";
 import { createHmac, timingSafeEqual } from "crypto";
-import type { XenditPlatform } from "./types";
+import type { XenditAPI } from "./types";
 
-export class Xendit extends REST<XenditPlatform.Routes> {
-  public constructor(
-    readonly apiKey: string,
-    private readonly webhookSecret: string
-  ) {
+export class Xendit extends REST<XenditAPI.Routes> {
+  public constructor(apiKey: string, private readonly webhookSecret: string) {
     super("https://api.xendit.co", {
       "Content-Type": "application/json", // everything is JSON
       Authorization: `Basic ${Buffer.from(`${apiKey}:`).toString("base64")}`, // basic auth

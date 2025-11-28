@@ -6,6 +6,5 @@ describe("Xendit", () => {
     const xendit = new Xendit("apiKey", "webhookSecret");
 
     expect(xendit).toBeInstanceOf(Xendit);
-    expect(xendit.apiKey).toBe("apiKey");
   });
 });
