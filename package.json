@@ -1,6 +1,6 @@
 {
   "name": "@zhyporium/xendit",
-  "version": "1.0.1",
+  "version": "0.0.1",
   "description": "A type-safe Xendit API wrapper for TypeScript that provides full type checking for the Xendit API routes and responses.",
   "keywords": [],
   "type": "module",
