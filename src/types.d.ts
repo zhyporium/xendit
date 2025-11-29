@@ -85,19 +85,21 @@ export declare namespace XenditAPI {
     expires_at: string;
     locale: "en";
     metadata: Record<string, any>;
-    items: {
-      reference_id: string;
-      type?: ItemType;
-      name: string;
-      net_unit_amount: number;
-      quantity: number;
-      url: string;
-      image_url: string;
-      category: string;
-      subcategory: string;
-      description: string;
-      metadata: Record<string, any>;
-    }[];
+    items:
+      | {
+          reference_id: string;
+          type?: ItemType;
+          name: string;
+          net_unit_amount: number;
+          quantity: number;
+          url: string;
+          image_url: string;
+          category: string;
+          subcategory: string;
+          description: string;
+          metadata: Record<string, any>;
+        }[]
+      | null;
     success_return_url: string;
     cancel_return_url: string;
     status: SessionStatus;
@@ -250,7 +252,7 @@ export declare namespace XenditAPI {
           locale?: "en";
           metadata?: Record<string, any>;
           description?: string;
-          items:
+          items?:
             | {
                 reference_id: string;
                 type?: ItemType;
@@ -265,8 +267,8 @@ export declare namespace XenditAPI {
                 metadata?: Record<string, any>;
               }[]
             | null;
-          success_return_url: string;
-          cancel_return_url: string;
+          success_return_url?: string;
+          cancel_return_url?: string;
         };
         response: Session;
       };
