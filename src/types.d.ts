@@ -174,8 +174,8 @@ export declare namespace XenditAPI {
     updated: string;
   }
 
-  interface Webhook {
-    "invoice.paid": {
+  interface WebhookEventPayloads {
+    INVOICE_PAID: {
       id: string;
       external_id: string;
       user_id: string;
@@ -204,6 +204,9 @@ export declare namespace XenditAPI {
       };
     };
   }
+
+  type WebhookBody<T extends keyof WebhookEventPayloads> =
+    WebhookEventPayloads[T];
 
   // ============================================================================
   // Response Interfaces
