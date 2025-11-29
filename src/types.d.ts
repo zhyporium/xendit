@@ -174,6 +174,37 @@ export declare namespace XenditAPI {
     updated: string;
   }
 
+  interface Webhook {
+    "invoice.paid": {
+      id: string;
+      external_id: string;
+      user_id: string;
+      status: "PENDING" | "PAID" | "EXPIRED" | "SETTLED";
+      merchant_name: string;
+      merchant_profile_picture_url: string;
+      amount: number;
+      description: string;
+      invoice_url: string;
+      expiry_date: string;
+      created: string;
+      updated: string;
+      currency: string;
+      paid_amount?: number;
+      paid_at?: string;
+      payment_method?: string;
+      payment_channel?: string;
+      payment_destination?: string;
+      success_redirect_url?: string;
+      failure_redirect_url?: string;
+      customer: {
+        given_names: string;
+        email: string;
+        mobile_number?: string;
+        nationality?: string;
+      };
+    };
+  }
+
   // ============================================================================
   // Response Interfaces
   // ============================================================================
@@ -337,6 +368,68 @@ export declare namespace XenditAPI {
           metadata?: Record<string, any>;
         };
         response: Customer;
+      };
+      "/v2/invoices": {
+        body: {
+          external_id: string;
+          amount: number;
+          description: string;
+          invoice_duration: number; // in seconds
+          customer: {
+            given_names: string;
+            email: string;
+          };
+          customer_notification_preference?: {
+            invoice_created: string[];
+            invoice_reminder: string[];
+            invoice_paid: string[];
+            invoice_expired: string[];
+          };
+          success_redirect_url?: string;
+          failure_redirect_url?: string;
+          payment_methods?: string[];
+          currency?: string;
+          fixed_va?: boolean;
+          reminder_time?: number;
+          fees?: Array<{
+            type: string;
+            value: number;
+          }>;
+        };
+        response: {
+          id: string;
+          external_id: string;
+          user_id: string;
+          status: string;
+          merchant_name: string;
+          merchant_profile_picture_url: string;
+          amount: number;
+          description: string;
+          invoice_url: string;
+          expiry_date: string;
+          created: string;
+          updated: string;
+          currency: string;
+          paid_amount?: number;
+          paid_at?: string;
+          payment_method?: string;
+          payment_channel?: string;
+          payment_destination?: string;
+          success_redirect_url?: string;
+          failure_redirect_url?: string;
+          customer: {
+            given_names: string;
+            email: string;
+            mobile_number?: string;
+            nationality?: string;
+          };
+          customer_notification_preference?: {
+            invoice_created: string[];
+            invoice_reminder: string[];
+            invoice_paid: string[];
+            invoice_expired: string[];
+          };
+        };
       };
     };
     PATCH: {};
